@@ -14,8 +14,6 @@ export default function DashboardPage() {
     getCurrentUser()
       .then(setUser)
       .catch((err) => {
-        // 401 means the cookie loop isn't working, or the user really isn't logged in -
-        // either way, send them to login rather than showing a broken page.
         if (err instanceof ApiError && err.status === 401) {
           router.push("/login");
         }
@@ -37,7 +35,7 @@ export default function DashboardPage() {
   }
 
   if (!user) {
-    return null; // redirect is already in flight
+    return null;
   }
 
   return (
