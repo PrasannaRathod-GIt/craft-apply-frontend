@@ -1,4 +1,4 @@
-import { apiFetch, API_BASE_URL, ApiError } from "./client";
+import { apiFetch } from "./client";
 
 export interface ResumeData {
   name: string;
@@ -33,24 +33,20 @@ export interface ResumeParseResponse {
   data: ResumeData;
 }
 
-/**
- * The backend's /resume/parse endpoint expects multipart/form-data (it uses
- * FastAPI's Form()/File() params, not a JSON body) - so this sends a FormData
- * object as the body directly, rather than using apiFetch's `json` convenience
- * option (which would incorrectly set Content-Type: application/json).
- */
-export async function parseResumeText(text: string): Promise<ResumeParseResponse> {
+export async function parseResumeText(text: string, model?: string): Promise<ResumeParseResponse> {
   const formData = new FormData();
   formData.append("text", text);
+  if (model) formData.append("model", model);
   return apiFetch<ResumeParseResponse>("/resume/parse", {
     method: "POST",
     body: formData,
   });
 }
 
-export async function parseResumeFile(file: File): Promise<ResumeParseResponse> {
+export async function parseResumeFile(file: File, model?: string): Promise<ResumeParseResponse> {
   const formData = new FormData();
   formData.append("file", file);
+  if (model) formData.append("model", model);
   return apiFetch<ResumeParseResponse>("/resume/parse", {
     method: "POST",
     body: formData,
@@ -64,21 +60,19 @@ export interface ResumeTailorResponse {
   match_notes: string;
 }
 
-/**
- * The backend's /resume/tailor endpoint takes a JSON body (submission_id +
- * job_description), unlike /resume/parse which takes multipart/form-data -
- * so this one uses apiFetch's `json` convenience option correctly.
- */
 export async function tailorResume(
   submissionId: number,
-  jobDescription: string
+  jobDescription: string,
+  model?: string
 ): Promise<ResumeTailorResponse> {
   return apiFetch<ResumeTailorResponse>("/resume/tailor", {
     method: "POST",
-    json: { submission_id: submissionId, job_description: jobDescription },
+    json: { submission_id: submissionId, job_description: jobDescription, model },
   });
 }
+
 export async function downloadResume(submissionId: number, fmt: "docx" | "pdf"): Promise<void> {
+  const { API_BASE_URL, ApiError } = await import("./client");
   const res = await fetch(`${API_BASE_URL}/resume/${submissionId}/export/${fmt}`, {
     credentials: "include",
   });
