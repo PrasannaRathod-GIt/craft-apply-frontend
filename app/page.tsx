@@ -43,18 +43,6 @@ function ArrowRight({ className = "" }: { className?: string }) {
   );
 }
 
-function Sparkle({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 28 28" fill="none" className={className} aria-hidden="true">
-      <path
-        d="M14 2.5c.55 5.45 2.05 8.45 6.6 11.5-4.55 3.05-6.05 6.05-6.6 11.5-.55-5.45-2.05-8.45-6.6-11.5C11.95 10.95 13.45 7.95 14 2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-    </svg>
-  );
-}
-
 function StarRating({
   fullStars,
   halfStar = false,
@@ -161,7 +149,7 @@ function LiveMatchPreview() {
         <div className="mb-4 flex items-center justify-between">
           <div>
             <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#8a8a84]">Live match</p>
-            <p className="mt-1 text-[15px] font-semibold text-[#202020]">Finding the strongest fit</p>
+            <p className="mt-1 text-[15px] font-semibold text-[#202020]">Finding the best job match</p>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white px-2.5 py-1 text-[11px] font-medium text-[#555]">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#31a24c]" />
@@ -304,17 +292,17 @@ export default function CraftPage() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-3 py-1.5 text-[12px] font-medium text-[#66665f] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#31a24c]" />
-                Resume crafting, without the guesswork
+                Tailor your resume in minutes
               </div>
 
               <h1 className="mt-7 max-w-[690px] text-[42px] font-bold leading-[1.05] tracking-[-0.045em] text-[#202020] sm:text-[54px] lg:text-[62px]">
-                Make your resume feel like it already belongs in the job you want.
+                Make your resume fit the job you want.
               </h1>
 
               <p className="mt-6 max-w-[610px] text-[17px] leading-8 text-[#66665f] sm:text-[18px]">
-                Paste your resume and the job description. Craft &amp; Apply rewrites the
-                right parts, keeps your experience honest, and gives you an ATS-ready version
-                you can actually send.
+                Paste your resume and a job description. Craft &amp; Apply highlights your
+                real experience, matches key job requirements, and gives you an ATS-ready
+                resume you can send with confidence.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -335,11 +323,11 @@ export default function CraftPage() {
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <CheckIcon className="h-4 w-4 text-[#4f7c58]" />
-                  No invented experience
+                  100% real experience
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <CheckIcon className="h-4 w-4 text-[#4f7c58]" />
-                  PDF + Word export
+                  Download PDF or Word
                 </span>
               </div>
             </div>
@@ -480,15 +468,15 @@ export default function CraftPage() {
         <section className="border-y border-black/[0.07] py-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#8c8c86]">
-              One workflow. Two outcomes.
+              One workflow. Simple steps.
             </p>
             <div className="flex min-w-0 items-center gap-2.5 overflow-x-auto pb-1">
               <span className="shrink-0 rounded-full bg-white px-3 py-1.5 text-[12px] text-[#66665f]">
-                Craft your resume
+                Upload resume
               </span>
               <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#a0a09b]" />
               <span className="shrink-0 rounded-full bg-white px-3 py-1.5 text-[12px] text-[#66665f]">
-                Match the role
+                Match job description
               </span>
               <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#a0a09b]" />
               <span className="shrink-0 rounded-full bg-white px-3 py-1.5 text-[12px] text-[#66665f]">
@@ -501,22 +489,21 @@ export default function CraftPage() {
         <section id="features" className="scroll-mt-24 py-20 sm:py-24">
           <div className="max-w-2xl">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#8c8c86]">
-              Everything you need
+              Features
             </p>
             <h2 className="mt-3 text-[34px] font-bold tracking-[-0.035em] sm:text-[44px]">
-              Simple on purpose.
+              Simple, fast, and effective.
             </h2>
             <p className="mt-4 text-[16px] leading-7 text-[#6c6c66]">
-              No overloaded dashboard. Just the few tools that make the job application
-              process easier to finish.
+              No complex dashboards. Just the essential tools you need to tailor your resume and apply faster.
             </p>
           </div>
 
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
             {[
-              { icon: DocumentIcon, title: "Craft a clean resume", body: "Paste your existing resume. We handle the structure and rewrite the parts that matter for the role." },
-              { icon: TargetIcon, title: "Match the actual job", body: "Use the job description as context so your resume speaks the same language as the position." },
-              { icon: ExportIcon, title: "Export and move", body: "Download an ATS-friendly PDF or Word file without rebuilding the document by hand." },
+              { icon: DocumentIcon, title: "Craft a clear resume", body: "Paste your current resume. We clean up the structure and rewrite key points to highlight your strengths." },
+              { icon: TargetIcon, title: "Match the job listing", body: "Add the job description so your resume automatically highlights the exact skills recruiters look for." },
+              { icon: ExportIcon, title: "Easy export", body: "Download an ATS-friendly PDF or Word document in seconds, ready to submit." },
             ].map(({ icon: Icon, title, body }) => (
               <div
                 key={title}
@@ -533,26 +520,23 @@ export default function CraftPage() {
 
           <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_0.6fr]">
             <div className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-[#f3f0ea] p-6 sm:p-8">
-              <div className="absolute right-5 top-5 opacity-45">
-                <Sparkle className="h-10 w-10 text-[#6f6f6a]" />
-              </div>
               <div className="relative max-w-lg">
                 <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#85857f]">
-                  Keep it honest
+                  Honest &amp; Real
                 </p>
                 <h3 className="mt-3 text-[27px] font-semibold tracking-[-0.03em] sm:text-[31px]">
-                  Better wording, not made-up experience.
+                  Better wording, real experience.
                 </h3>
                 <p className="mt-3 text-[15px] leading-7 text-[#656560]">
-                  Craft &amp; Apply is designed to sharpen what you already did — not invent
-                  work you never did.
+                  Craft &amp; Apply sharpens your actual work history — highlighting your
+                  real achievements without inventing fake experience.
                 </p>
               </div>
             </div>
 
             <div className="rounded-[26px] border border-black/[0.08] bg-white p-6 sm:p-8">
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#85857f]">
-                And when you&apos;re ready
+                Next steps
               </p>
               <h3 className="mt-3 text-[27px] font-semibold tracking-[-0.03em]">
                 Go from resume to job search.
@@ -561,7 +545,7 @@ export default function CraftPage() {
                 href="/jobs"
                 className="mt-6 inline-flex items-center gap-2 text-[14px] font-semibold text-[#202020] underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-black/60"
               >
-                Browse the jobs board
+                Browse open jobs
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -575,18 +559,18 @@ export default function CraftPage() {
                 How it works
               </p>
               <h2 className="mt-3 text-[34px] font-bold tracking-[-0.035em] sm:text-[44px]">
-                Three small steps.
+                3 simple steps.
               </h2>
               <p className="mt-4 max-w-md text-[16px] leading-7 text-[#6c6c66]">
-                The interface stays quiet so the work can stay focused.
+                Create a job-ready resume in just a few clicks.
               </p>
             </div>
 
             <div className="grid gap-3">
               {[
-                ["01", "Paste your resume", "Bring whatever version you have. It does not need to be pretty."],
-                ["02", "Paste the job description", "Give the AI the target role, skills, and language to work with."],
-                ["03", "Generate, review, export", "Get a tailored draft, check the changes, and download it."],
+                ["01", "Paste your resume", "Upload or paste your current resume. Any format works."],
+                ["02", "Paste the job description", "Add the job listing you want to target so we can match key skills."],
+                ["03", "Review and download", "Get your tailored resume, check the improvements, and download your file."],
               ].map(([number, title, body]) => (
                 <div
                   key={number}
@@ -609,14 +593,13 @@ export default function CraftPage() {
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#8c8c86]">
-                Keep moving
+                Job search
               </p>
               <h2 className="mt-3 text-[34px] font-bold tracking-[-0.035em] sm:text-[44px]">
-                A resume is only useful when it helps you apply.
+                Tailor your resume and apply right away.
               </h2>
               <p className="mt-4 max-w-xl text-[16px] leading-7 text-[#6c6c66]">
-                That is why Craft &amp; Apply also gives you a simple place to discover roles
-                after you finish crafting.
+                Once your resume is ready, explore open job listings and start applying immediately.
               </p>
               <Link href="/jobs" className="mt-7 inline-flex items-center gap-2 text-[15px] font-semibold text-[#202020]">
                 See available jobs
@@ -638,7 +621,7 @@ export default function CraftPage() {
                 <span className="text-[15px] font-semibold">Craft &amp; Apply</span>
               </div>
               <p className="mt-4 max-w-sm text-[14px] leading-6 text-[#777770]">
-                A simpler way to craft a targeted resume and move on to the next application.
+                A simple way to build a tailored, ATS-friendly resume and land your next job faster.
               </p>
             </div>
 
@@ -676,12 +659,9 @@ export default function CraftPage() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 border-t border-black/[0.07] pt-5 text-[12px] text-[#92928c] sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2">
-              <LogoMark small />
-              <span>Craft &amp; Apply</span>
-            </div>
+          <div className="mt-12 flex flex-col gap-3 border-t border-black/[0.07] pt-8 text-[13px] text-[#888880] sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} Craft &amp; Apply. All rights reserved.</p>
+            <p>Designed for clarity and focus.</p>
           </div>
         </div>
       </footer>
