@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -69,23 +70,14 @@ export default function LoginPage() {
         return;
       }
 
-      await apiFetch("/auth/register", {
+      await apiFetch("/api/signup", {
         method: "POST",
-        body: JSON.stringify({
+        json: {
           username: username.trim(),
           email: email.trim(),
           password,
-        }),
+        },
       });
-
-      /*
-       * Registration succeeded.
-       *
-       * Log the user in immediately so the account creation flow
-       * ends with an authenticated session rather than making the
-       * user enter the same credentials again.
-       */
-      await loginWithPassword(email.trim(), password);
 
       router.push("/dashboard");
     } catch (err) {
