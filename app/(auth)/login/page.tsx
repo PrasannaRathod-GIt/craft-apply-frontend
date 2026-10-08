@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -14,6 +13,12 @@ type AuthMode = "login" | "signup";
 
 export default function LoginPage() {
   const router = useRouter();
+
+  const searchParams =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : new URLSearchParams();
+  const nextPath = searchParams.get("next") || "/dashboard";
 
   const [mode, setMode] = useState<AuthMode>("login");
 
@@ -66,7 +71,7 @@ export default function LoginPage() {
     try {
       if (mode === "login") {
         await loginWithPassword(email.trim(), password);
-        router.push("/dashboard");
+        router.push(nextPath);
         return;
       }
 
@@ -79,7 +84,7 @@ export default function LoginPage() {
         },
       });
 
-      router.push("/dashboard");
+      router.push(nextPath);
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);
@@ -301,7 +306,7 @@ export default function LoginPage() {
 
                 <path
                   fill="#FBBC05"
-                  d="M6.53 13.6a5.85 5.85 0 010-3.2V7.88H3.28a9.5 9.5 0 000 8.24l3.25-2.52z"
+                  d="M6.53 13.6a5.85 5.85 0 010-3.2V7.88H3.28a9.5 9.5 0 000 8.24l3.25-2.52a5.85 5.85 0 010 3.2v2.53H3.28a9.5 9.5 0 000-8.24l3.25-2.52z"
                 />
 
                 <path
