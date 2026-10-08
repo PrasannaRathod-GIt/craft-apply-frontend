@@ -6,6 +6,7 @@ import Link from "next/link";
 import { apiFetch, ApiError } from "@/lib/api/client";
 
 type Job = {
+  id: number;
   title: string;
   company?: string;
   location?: string;
@@ -62,6 +63,19 @@ export default function JobDetail() {
         setError(e instanceof ApiError ? e.message : "Could not load this job.")
       );
   }, [slug]);
+
+  const handleApply = async function handleApply() {
+    if (!job) return;
+
+    try {
+      await apiFetch("/applied-jobs", {
+        method: "POST",
+        json: { job_id: job.id },
+      });
+    } catch {
+      // non-fatal — user still gets redirected even if logging fails
+    }
+  };
 
   const sourceName = job?.source
     ? SOURCE_LABEL[job.source] ?? job.source
@@ -140,6 +154,7 @@ export default function JobDetail() {
                     href={job.apply_url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
+                    onClick={handleApply}
                     className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#202020] px-5 py-3 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-black active:translate-y-0"
                   >
                     Apply now
@@ -171,6 +186,7 @@ export default function JobDetail() {
                     href={job.apply_url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
+                    onClick={handleApply}
                     className="group mt-4 inline-flex items-center gap-2 rounded-full bg-[#202020] px-6 py-3 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-black active:translate-y-0"
                   >
                     View full listing on {sourceName}
